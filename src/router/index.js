@@ -4,6 +4,7 @@ import Survey from '../views/Survey.vue'
 import Result from '../views/Result.vue'
 import Industry from '../views/Industry.vue'
 import Metric from '../views/Metric.vue'
+import Stock from '../views/Stock.vue'
 const routes = [
   {
     path: '/',
@@ -31,9 +32,9 @@ const routes = [
     component: Metric
   },
   {
-    path: '/',
+    path: '/stock',
     name: 'Stock',
-    component: Home
+    component: Stock
   },
   {
     path: '/',
