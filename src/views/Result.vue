@@ -1,14 +1,13 @@
 <template>
   <h1>
-    You are a
+    You are a :
   </h1>
   <h1 class="display-2">
     {{investor.name}}
   </h1>
-  <h5>Description:</h5>
-  <blockquote class="blockquote">
+  <p class="lead">
     {{investor.description}}
-  </blockquote>
+  </p>
   <dl class="row">
     <dt class="col-sm-3">Trait:</dt>
     <dd class="col-sm-9">{{investor.trait}}</dd>
@@ -17,7 +16,7 @@
     <dd class="col-sm-9">{{investor.risk}}
     </dd>
 
-    <dt class="col-sm-3">Recommendation:</dt>
+    <dt class="col-sm-3">Recommended Industry:</dt>
     <dd class="col-sm-9">
       <router-link
         class="text-decoration-none d-block"

@@ -16,5 +16,41 @@ export const investors=[
         abbrev:'ETF'
       }
     ]
+  },
+  {
+    name:'Balanced Investor',
+    description:'Perfectly Balanced, as all things should be',
+    trait:'Tolerate limited negative price movements',
+    risk:'Medium',
+    recommendation:[
+      {
+        id:1,
+        name:'REIT',
+        abbrev:'REIT'
+      },
+      {
+        id:2,
+        name:'ETF',
+        abbrev:'ETF'
+      }
+    ]
+  },
+  {
+    name:'Aggressive Investor',
+    description:'Danger is your middlename',
+    trait:'Tolerate limited negative price movements',
+    risk:'High',
+    recommendation:[
+      {
+        id:1,
+        name:'REIT',
+        abbrev:'REIT'
+      },
+      {
+        id:2,
+        name:'ETF',
+        abbrev:'ETF'
+      }
+    ]
   }
 ]
