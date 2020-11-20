@@ -7,6 +7,7 @@
       <th scope="col">Shariah</th>
       <th scope="col">Price</th>
       <th scope="col">P/CF</th>
+      <th scope="col">Debt Ratio</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,7 @@
       <td>{{stock.shariah?'Yes':'No'}}</td>
       <td >{{(stock.price)}}</td>
       <td>{{stock.pcf}}</td>
+      <td>{{stock.debtRatio}}</td>
     </tr>
   </tbody>
 </table>
@@ -29,6 +31,8 @@ export default {
     }
   },
   mounted: function () {
+    this.calculatePCF()
+    this.calculateDebtRatio()
     window.setInterval(() => {
       this.changeData();
     },2000);
@@ -42,7 +46,22 @@ export default {
         stock.increase = oldPrice < stock.price
         return stock
       });
-      this.stocks=newStocks
+      this.stocks = newStocks
+      this.calculatePCF()
+    },
+    calculatePCF(){
+      let newStocks=stocks.map(stock => {
+        stock.pcf =  Math.round((stock.price/(stock.cashflow/stock.share))*100)/100;
+        return stock
+      });
+      this.stocks = newStocks
+    },
+    calculateDebtRatio(){
+      let newStocks=stocks.map(stock => {
+        stock.debtRatio =  Math.round((stock.bankBorrowings/stock.totalAsset)*100)/100;
+        return stock
+      });
+      this.stocks = newStocks
     }
   }
 }
