@@ -5,6 +5,7 @@ import Result from '../views/Result.vue'
 import Industry from '../views/Industry.vue'
 import Metric from '../views/Metric.vue'
 import Stock from '../views/Stock.vue'
+import Broker from '../views/Broker.vue'
 const routes = [
   {
     path: '/',
@@ -37,9 +38,9 @@ const routes = [
     component: Stock
   },
   {
-    path: '/',
+    path: '/broker',
     name: 'Broker',
-    component: Home
+    component: Broker
   },
   {
     path: '/about',

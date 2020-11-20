@@ -13,6 +13,9 @@
           <li class="nav-item">
             <router-link class="nav-link active" to="/survey">Survey</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link active" to="/broker">Broker</router-link>
+          </li>
         </ul>
       </div>
     </div>
