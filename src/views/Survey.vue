@@ -6,7 +6,7 @@
   <form @submit.prevent='submitSurvey'>
   <div class="mb-3">
     <label for="tradingExp" class="form-label">Trading Experience</label>
-    <select class="form-select" id="tradingExp" >
+    <select class="form-select" id="tradingExp" v-model="tradingExp">
       <option :value="options.value" v-for="(options, index) in tradingExpOption" :key="index">
         {{ options.name }}
       </option>
@@ -15,7 +15,7 @@
 
   <div class="mb-3">
     <label for="age" class="form-label">Age</label>
-    <select class="form-select" id="age">
+    <select class="form-select" id="age" v-model="age">
       <option :value="options.value" v-for="(options, index) in ageOption" :key="index">
         {{ options.name }}
       </option>
@@ -24,7 +24,7 @@
 
   <div class="mb-3">
     <label for="capital" class="form-label">Capital Available</label>
-    <select class="form-select" id="capital">
+    <select class="form-select" id="capital" v-model="capital">
       <option :value="options.value" v-for="(options, index) in capitalOption" :key="index">
         {{ options.name }}
       </option>
@@ -33,7 +33,7 @@
 
   <div class="mb-3">
     <label for="purpose" class="form-label">Purpose for Investing</label>
-    <select class="form-select" id="purpose">
+    <select class="form-select" id="purpose" v-model="purpose">
       <option :value="options.value" v-for="(options, index) in purposeOption" :key="index">
         {{ options.name }}
       </option>
@@ -42,7 +42,7 @@
 
   <div class="mb-3">
     <label for="iritated" class="form-label">If you are irritated by somebody, what would you do?</label>
-    <select class="form-select" id="iritated">
+    <select class="form-select" id="iritated" v-model="iritated">
       <option :value="options.value" v-for="(options, index) in irritatedOption" :key="index">
         {{ options.name }}
       </option>
@@ -59,42 +59,66 @@
 export default {
   data(){
     return{
+      tradingExp:0,
+      age:0,
+      capital:0,
+      purpose:0,
+      iritated:0,
       tradingExpOption: [
         {value:0, name: "Please Select"},
-        {value:1, name: "< 1 Year"},
-        {value:2, name: "1 - 5 Years"},
-        {value:3, name: "> 5 Years"}
+        {value:"c", name: "< 1 Year"},
+        {value:"bc", name: "1 - 5 Years"},
+        {value:"ca", name: "> 5 Years"}
       ],
       ageOption: [
         {value:0, name: "Please Select"},
-        {value:1, name: "18 - 30"},
-        {value:2, name: "30 - 45"},
-        {value:3, name: "> 45"}
+        {value:"ba", name: "18 - 30"},
+        {value:"b", name: "30 - 45"},
+        {value:"a", name: "> 45"}
       ],
       capitalOption: [
         {value:0, name: "Please Select"},
-        {value:1, name: "< RM100,000"},
-        {value:2, name: "RM100,000 - RM1,000,000"},
-        {value:3, name: "> RM1,000,000"}
+        {value:"bc", name: "< RM100,000"},
+        {value:"bc", name: "RM100,000 - RM1,000,000"},
+        {value:"ba", name: "> RM1,000,000"}
       ],
       purposeOption: [
         {value:0, name: "Please Select"},
-        {value:1, name: "Retirement"},
-        {value:2, name: "Wedding"},
-        {value:3, name: "Buy Car, House etc"},
-        {value:4, name: "Short Term Gain"}
+        {value:"bc", name: "Retirement"},
+        {value:"c", name: "Wedding"},
+        {value:"c", name: "Buy Car, House etc"},
+        {value:"a", name: "Short Term Gain"}
       ],
       irritatedOption: [
         {value:0, name: "Please Select"},
-        {value:1, name: "Fight Back"},
-        {value:2, name: "Understand the reason they irritates me"},
-        {value:3, name: "Walk away"}
+        {value:"a", name: "Fight Back"},
+        {value:"b", name: "Understand the reason they irritates me"},
+        {value:"c", name: "Walk away"}
       ],
     }
   },
   methods: {
     submitSurvey() {
-      this.$router.push({name:'Result', params:{id:1}})
+      let result = this.tradingExp+this.age+this.capital+this.purpose+this.iritated
+      let occurance = this.countAllCharacters(result)
+      let id=0
+      if(occurance.a > occurance.b && occurance.a > occurance.c){
+        id=3
+      } else if (occurance.b > occurance.c){
+        id=2
+      }else {
+        id=1
+      }
+      this.$router.push({name:'Result', params:{id:id}})
+    },
+
+    countAllCharacters(str) {
+      let a = str.split("");
+      let obj = {};
+      a.forEach(function(s){
+        obj[s] = (obj[s] || 0) + 1;
+      });
+      return obj;
     }
   }
 
