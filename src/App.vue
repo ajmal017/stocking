@@ -17,7 +17,7 @@
       </div>
     </div>
   </nav>
-    <div class="container-fluid pt-2">
+    <div class="container-lg pt-2">
   <router-view/>
   </div>
 </template>
