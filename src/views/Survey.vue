@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     submitSurvey() {
-      this.$router.push({path:'/result'})
+      this.$router.push({name:'Result', params:{id:1}})
     }
   }
 

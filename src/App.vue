@@ -21,6 +21,12 @@
   <router-view/>
   </div>
 </template>
-
+<script>
+export default {
+   created () {
+    document.title = 'Stocking'
+  }
+}
+</script>
 <style>
 </style>

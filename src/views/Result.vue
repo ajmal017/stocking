@@ -21,9 +21,8 @@
     <dd class="col-sm-9">
       <router-link
         class="text-decoration-none d-block"
-        :to="{name:'Industry', params: {id:industry.name}}"
-        v-for="(industry, index) in
-        investor.recommendation"
+        :to="{name:'Industry', params: {id:industry.id}}"
+        v-for="(industry, index) in investor.recommendation"
         :key="index">
         {{industry.name}}
       </router-link>
@@ -34,25 +33,12 @@
 </template>
 
 <script>
+import {investors} from "../assets/investors"
+
 export default {
   data() {
     return {
-      investor:{
-        name:'Conservative Investor',
-        description:'A investor that takes the safest profits',
-        trait:'Tolerate limited negative price movements',
-        risk:'Low',
-        recommendation:[
-          {
-            name:'REIT',
-            abbrev:'REIT'
-          },
-          {
-            name:'ETF',
-            abbrev:'ETF'
-          }
-        ]
-      }
+      investor:investors[this.$route.params.id-1]
     }
   },
 }

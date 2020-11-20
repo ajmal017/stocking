@@ -16,7 +16,7 @@ const routes = [
     component: Survey
   },
   {
-    path: '/result',
+    path: '/result/:id',
     name: 'Result',
     component: Result
   },
