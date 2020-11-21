@@ -1,12 +1,14 @@
 <template>
-  <div class="jumbotron">
-    <h1 class="display-4">Stocking <small class="text-muted fs-6">(Subject to Change)</small></h1>
-      <p class="lead">Want to step into the world of investing? We've got you covered</p>
-      <hr class="my-4">
-      <p>You can start by finding out your investing style.</p>
-      <p class="lead">
-        <router-link class="btn btn-primary btn-lg" :to="{name:'Survey'}" role="button">Start Now</router-link>
-      </p>
+  <div class="jumbotron text-center">
+    <img src="../assets/img/money.png" class="mx-auto d-block img-fluid" />
+    <h1>Want to step into the world of investment?</h1>
+    <p class="lead">But not sure where to start?</p>
+    <hr class="my-4">
+    <p class="lead">We've got you covered.</p>
+    <p>Let's start by exploring your investing style.</p>
+    <div class="text-center">
+    <router-link class="btn btn-success" :to="{name:'Survey'}" role="button">Start Now</router-link>
+    </div>
   </div>
 </template>
 
@@ -25,5 +27,9 @@ export default {
   margin-bottom: 2rem;
   background-color: #e9ecef;
   border-radius: .3rem;
+}
+
+img {
+  max-width: 200px;
 }
 </style>

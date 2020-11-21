@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/">Stocking <small class="text-muted fs-6">(Subject to Change)</small></router-link>
+      <router-link class="navbar-brand" to="/">Stocking</router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -17,8 +17,8 @@
       </div>
     </div>
   </nav>
-    <div class="container-lg pt-2">
-  <router-view/>
+  <div class="container pt-5 px-4">
+    <router-view/>
   </div>
 </template>
 <script>
@@ -28,5 +28,14 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="scss">
+html {
+  height: 100%;
+}
+
+body {
+  background-repeat: no-repeat;
+  background: rgb(68,6,170);
+  background: linear-gradient(146deg, rgba(68,6,170,1) 41%, rgba(6,44,161,1) 80%);
+}
 </style>
