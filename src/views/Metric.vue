@@ -2,6 +2,7 @@
   <h1>{{metric.name}} ({{metric.abbrev}})</h1>
   <p v-for="(description, index) in descriptionArray" :key="index">{{description}}</p>
   <p>{{metric.formula}}</p>
+  <strong>{{metric.evaluation}} is Better</strong>
 </template>
 <script>
 import { metrics } from "../assets/metrics"
