@@ -36,7 +36,7 @@
           </div>
         </div>
     </div>
-    
+
     <div v-if="tab === 3" class="text-only my-5 text-center animate__animated animate__backInLeft" v-bind:class="{'animate__backOutLeft': tabChange}">
       <p class="form-label text-white fs-4">Describe your expectations in the field of investment.</p>
       <textarea v-model="expectations" class="form-control mt-5 mb-4" row="3"></textarea>
@@ -45,37 +45,39 @@
 
     <div v-if="tab === 4" class="text-only my-5 text-center animate__animated animate__backInLeft" v-bind:class="{'animate__backOutLeft': tabChange}">
       <p class="form-label text-white fs-4">How do you determine success in life?</p>
-      <textarea type="text" v-model="success" class="form-control mt-5 mb-4" row="3"></textarea>
+      <textarea v-model="success" class="form-control mt-5 mb-4" row="3"></textarea>
       <button type="button" class="btn btn-lg btn-outline-light" @click="changeTab(5)">Next</button>
     </div>
 
     <div v-if="tab === 5" class="text-only my-5 text-center animate__animated animate__backInLeft" v-bind:class="{'animate__backOutLeft': tabChange}">
       <p class="form-label text-white fs-4">Describe the most memorable experience in your life.</p>
-      <textarea type="text" v-model="lifeExp" class="form-control mt-5 mb-4" row="3"></textarea>
+      <textarea v-model="lifeExp" class="form-control mt-5 mb-4" row="3"></textarea>
       <button type="button" class="btn btn-lg btn-outline-light" @click="changeTab(6)">Next</button>
     </div>
 
     <div v-if="tab === 6" class="text-only my-5 text-center animate__animated animate__backInLeft" v-bind:class="{'animate__backOutLeft': tabChange}">
       <p class="form-label text-white fs-4">If you are irritated by somebody, what would you do?</p>
-      <textarea type="text" v-model="irritated" class="form-control mt-5 mb-4" row="3"></textarea>
+      <textarea v-model="irritated" class="form-control mt-5 mb-4" row="3"></textarea>
       <button type="button" class="btn btn-lg btn-outline-light" @click="changeTab(7)">Next</button>
     </div>
-    
+
     <div v-if="tab === 7" class="text-only my-5 text-center animate__animated animate__backInLeft" v-bind:class="{'animate__backOutLeft': tabChange}">
       <p class="form-label text-white fs-4">How do you deal with stress in your everyday life?</p>
-      <textarea type="text" v-model="stress" class="form-control mt-5 mb-4" row="3"></textarea>
+      <textarea v-model="stress" class="form-control mt-5 mb-4" row="3"></textarea>
       <button type="submit" class="btn btn-success">Submit</button>
     </div>
-  
-    <button v-if="tab !== 0" class="bottom text-white animate__animated animate__backInLeft" @click="changeTab(tab-1)">Back</button>
+
+    <button v-if="tab !== 0" class="bottom text-white animate__animated animate__backInLeft" v-on:click.prevent="changeTab(tab-1)">Back</button>
   </form>
 
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data(){
     return{
+      url: 'https://api.us-south.personality-insights.watson.cloud.ibm.com/instances/36eeaf67-af1a-4675-ae1d-0e998b3469ce/v3/profile?version=2020-11-21',
       tab: 0,
       tabChange: false,
       errors:[],
@@ -112,21 +114,68 @@ export default {
         this.tabChange = false;
         }, 500);
     },
+    async submitSurvey() {
 
-    submitSurvey() {
-        let result = this.tradingExp+this.age+this.capital
-        let occurance = this.countAllCharacters(result)
-        let id=0
-        if(occurance.a > occurance.b && occurance.a > occurance.c){
-          id=3
-        } else if (occurance.b > occurance.c){
-          id=2
-        }else {
-          id=1
-        }
-        this.$router.push({name:'Result', params:{id:id}})
+      let result = this.tradingExp+this.age+this.capital
+      const data = [this.expectations,this.success,this.lifeExp,this.irritated,this.stress]
+      let tempContent = data.map(element=>{
+        return {content:element}
+      })
+      let contentItems=[]
+      for(let i=0; i<100; i++){
+        contentItems.push(...tempContent)
+      }
+      const headers = {
+        "Authorization": "Basic YXBpa2V5OmV3bGhwWFlpUk9FRVk5UlJMbHAzN3U3aUp4d3Z2VjRkUXJPU1BtRUNoS1cw",
+        "Accept": "application/json"
+      };
+      const response = await axios.post(this.url, {contentItems:contentItems} , {headers});
+      let res = response.data;
+      let adventurous = res.personality[0].children[0].percentile
+      let achievementStriving  = res.personality[1].children[0].percentile
+      let cautiousness = res.personality[1].children[1].percentile
+      let selfDiscipline = res.personality[1].children[4].percentile
+      let activityLevel  = res.personality[2].children[0].percentile
+      let excitementSeeking   = res.personality[2].children[0].percentile
+      if(adventurous>0.75){
+        result=result+'a'
+      } else if(adventurous>0.50){
+        result=result+'b'
+      } else {
+        result=result+'c'
+      }
+      if(achievementStriving>0.75){
+        result=result+'a'
+      }else{
+        result=result+'b'
+      }
+      if(cautiousness>0.75){
+        result=result+'c'
+      }
+      if(selfDiscipline>0.75){
+        result=result+'b'
+      }
+      if(activityLevel>0.75){
+        result=result+'a'
+      } else if(adventurous>0.50){
+        result=result+'b'
+      } else {
+        result=result+'c'
+      }
+      if(excitementSeeking>0.75){
+        result=result+'a'
+      }
+      let occurance = this.countAllCharacters(result)
+      let id=0
+      if(occurance.a > occurance.b && occurance.a > occurance.c){
+        id=3
+      } else if (occurance.b > occurance.c){
+        id=2
+      }else {
+        id=1
+      }
+      this.$router.push({name:'Result', params:{id:id}})
     },
-
     countAllCharacters(str) {
       let a = str.split("");
       let obj = {};
@@ -135,56 +184,7 @@ export default {
       });
       return obj;
     },
-  },
-  computed:{
-    tradingExpError:function(){
-      return this.errors.find(error=>error===1)
-    },
-    ageError:function(){
-      return this.errors.find(error=>error===2)
-    },
-    capitalError:function(){
-      return this.errors.find(error=>error===3)
-    },
-    purposeError:function(){
-      return this.errors.find(error=>error===4)
-    },
-    iritatedError:function(){
-      return this.errors.find(error=>error===5)
-    }
-  },
-  watch: {
-    tradingExp: function () {
-     const index = this.errors.indexOf(1);
-      if (index > -1) {
-        this.errors.splice(index, 1);
-      }
-    },
-    age: function () {
-     const index = this.errors.indexOf(2);
-      if (index > -1) {
-        this.errors.splice(index, 1);
-      }
-    },
-    capital: function () {
-     const index = this.errors.indexOf(3);
-      if (index > -1) {
-        this.errors.splice(index, 1);
-      }
-    },
-    purpose: function () {
-     const index = this.errors.indexOf(4);
-      if (index > -1) {
-        this.errors.splice(index, 1);
-      }
-    },
-    iritated: function () {
-     const index = this.errors.indexOf(5);
-      if (index > -1) {
-        this.errors.splice(index, 1);
-      }
-    }
-  },
+  }
 
 }
 </script>
