@@ -1,32 +1,35 @@
 <template>
-<h1>Brokers</h1>
-<div class="row row-cols-auto g-3">
-  <div class="col" v-for="(broker, index) in brokers" :key="index" >
-    <div class="card" style="max-width: 20rem;" >
+<h1 class="mb-4 text-center">Brokers</h1>
+<div class="row row-cols-auto g-3 text-dark">
+  <div class="col-sm-12 col-md-6" style="width: 100%" v-for="(broker, index) in brokers" :key="index" >
+    <div class="card">
       <a :href="broker.link" target="_blank">
-        <img :src="getImgUrl(broker.img.src)" class="card-img-top p-3" v-bind:alt="broker.img.alt">
+        <img :src="getImgUrl(broker.img.src)" class="p-3" v-bind:alt="broker.img.alt">
       </a>
       <div class="card-body">
         <h5 class="card-title">{{broker.name}}</h5>
-        <p class="card-text"><a :href="broker.link" target="_blank" role="button">Go to Site</a>
+        <p class="card-text"><a :href="broker.link" target="_blank" role="button">Open trading account</a>
       </p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Online Broker Fees
+        <li class="list-group-item">
+          <span class="fw-bold">Online Broker Fees</span>
           <ul>
               <li v-for="(onlineBrokerFees, index) in broker.onlineBrokerFees" :key="index">
                 {{onlineBrokerFees}}
               </li>
             </ul>
         </li>
-        <li class="list-group-item">Trading Limit
+        <li class="list-group-item">
+          <span class="fw-bold">Trading Limit</span>
           <ul>
             <li v-for="(tradingLimit, index) in broker.tradingLimit" :key="index">
               {{tradingLimit}}
             </li>
           </ul>
         </li>
-        <li class="list-group-item" v-if="broker.specialOffers.length">Special Offers
+        <li class="list-group-item" v-if="broker.specialOffers.length">
+          <span class="fw-bold">Special Offers</span>
           <ul>
             <li v-for="(specialOffers, index) in broker.specialOffers" :key="index">
               {{specialOffers}}
@@ -66,6 +69,9 @@ export default {
 </script>
 
 <style>
+img {
+  max-height: 100px;
+}
 .google-play{
   width: 9.6rem;
   height: auto;

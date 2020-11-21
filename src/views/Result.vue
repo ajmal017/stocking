@@ -2,13 +2,13 @@
   <h4 class="fst-italic">
     You are a:
   </h4>
-  <h1 class="display-2 text-info">
+  <h1 class="display-2 text-info animate__animated animate__fadeIn animate__slow">
     {{investor.name}}
   </h1>
   <p class="lead">
     {{investor.description}}
   </p>
-  <div class="card text-dark mt-5">
+  <div class="card text-dark mt-5 animate__animated animate__fadeInUpBig animate__delay-1s">
     <div class="card-body">
       <dl class="row">
         <dt class="col-sm-3">Trait:</dt>
@@ -27,19 +27,19 @@
         </dd>
 
         <dt class="col-sm-3 mt-3">Recommended Investment:</dt>
-        <dd class="row mt-3">
+        <div class="row mt-3">
           <div
             v-for="(industry, index) in investor.recommendation"
             :key="index"
             class="col-5">
             <router-link
-              class="btn btn-sm btn-warning d-block animate__animated animate__pulse"
+              class="btn btn-sm btn-warning d-block animate__animated animate__pulse animate__infinite animate__delay-3s"
               :to="{name:'Industry', params: {id:industry.id}}"
               >
               {{industry.name}}
             </router-link>
           </div>
-        </dd>
+        </div>
       </dl>
     </div>
   </div>

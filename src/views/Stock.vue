@@ -1,6 +1,10 @@
 <template>
-<h5>Comparison of REIT</h5>
-<table class="table">
+<div class="animate__animated animate__fadeInUpBig" v-bind:class="{'animate__fadeOutDownBig': back}">
+<div class="row">
+  <h4 class="col-10 text-center">Comparison of REIT</h4>
+  <button class="col-2 text-white back" @click="goBack">Back</button>
+</div>
+<table class="table table-responsive-sm text-white mt-3">
   <thead>
     <tr>
       <th scope="col">Company</th>
@@ -13,13 +17,14 @@
   <tbody>
     <tr v-for="(stock, index) in stocks" :key="index">
       <th scope="row">{{stock.abbrev}}</th>
-      <td>{{stock.shariah?'Yes':'No'}}</td>
-      <td >{{(stock.price)}}</td>
+      <td class="fw-bold text-center" v-bind:class="{'text-success': stock.shariah, 'text-danger': !stock.shariah}">{{stock.shariah ? 'Yes' : 'No'}}</td>
+      <td class="fw-bold text-center" v-bind:class="{'text-success': stock.increase, 'text-danger': !stock.increase}">{{(stock.price)}}</td>
       <td>{{stock.pcf}}</td>
       <td>{{stock.debtRatio}}</td>
     </tr>
   </tbody>
 </table>
+</div>
 </template>
 
 <script>
@@ -27,7 +32,8 @@ import {stocks} from "../assets/stocks"
 export default {
   data(){
     return{
-      stocks:stocks
+      back: false,
+      stocks: stocks,
     }
   },
   mounted: function () {
@@ -38,6 +44,14 @@ export default {
     },2000);
   },
   methods:{
+    goBack() {
+      this.back = true;
+      setTimeout(() => {
+        this.$router.go(-1);
+        this.back = false;
+        }, 500);
+      
+    },
     changeData(){
       let newStocks=stocks.map(stock => {
         let randomnum = Math.floor(Math.random() * (10- 1) + 1) / (1000);
@@ -67,6 +81,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.back {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  outline: none;
+}
 </style>

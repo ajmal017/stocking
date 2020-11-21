@@ -17,7 +17,7 @@
       </div>
     </div>
   </nav>
-  <div class="container pt-5 px-4 text-white">
+  <div class="container pt-4 pb-2 px-4 text-white">
     <router-view/>
   </div>
 </template>
@@ -34,8 +34,10 @@ html {
 }
 
 body {
+  min-height: 100%;
   background-repeat: no-repeat;
-  background: rgb(68,6,170);
-  background: linear-gradient(146deg, rgba(68,6,170,1) 41%, rgba(6,44,161,1) 80%);
+  // background: rgb(68,6,170);
+  background: linear-gradient( rgba(68,6,170,1) 41%, rgb(23, 53, 143) 80%);
+  background-attachment: fixed;
 }
 </style>

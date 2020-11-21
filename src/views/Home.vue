@@ -1,5 +1,5 @@
 <template>
-  <div class="jumbotron text-center">
+  <div class="jumbotron text-center text-dark">
     <img src="../assets/img/money.png" class="mx-auto d-block img-fluid" />
     <h1>Want to step into the world of investment?</h1>
     <p class="lead">But not sure where to start?</p>
