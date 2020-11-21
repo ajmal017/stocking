@@ -16,6 +16,14 @@
     <dd class="col-sm-9">{{investor.risk}}
     </dd>
 
+    <dt class="col-sm-3">Target:</dt>
+    <dd class="col-sm-9">{{investor.target}}
+    </dd>
+
+    <dt class="col-sm-3">Time Horizon:</dt>
+    <dd class="col-sm-9">{{investor.timeHorizon}}
+    </dd>
+
     <dt class="col-sm-3">Recommended Industry:</dt>
     <dd class="col-sm-9">
       <router-link

@@ -1,5 +1,5 @@
 <template>
-  <h1>{{metric.name}} ({{metric.abbrev}})</h1>
+  <h1>{{metric.name}} <small v-if="metric.abbrev">({{metric.abbrev}})</small></h1>
   <p v-for="(description, index) in descriptionArray" :key="index">{{description}}</p>
   <p>{{metric.formula}}</p>
   <strong>{{metric.evaluation}} is Better</strong>
