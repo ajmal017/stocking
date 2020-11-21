@@ -1,7 +1,7 @@
 export const investors=[
   {
     name:'Conservative Investor',
-    description:'A investor who takes the safest profits',
+    description:'An investor who takes the safest profits.',
     trait:'Tolerate limited negative price movements (Cannot lose much money)',
     risk:'Low',
     target:'Capital Presevation',
@@ -21,7 +21,7 @@ export const investors=[
   },
   {
     name:'Balanced Investor',
-    description:'Perfectly Balanced, as all things should be',
+    description:'Perfectly Balanced, as all things should be.',
     trait:'Tolerate moderate negative price movements (Can afford to lose some money)',
     risk:'Medium',
     target:'Capital preservation + Capital gain',
@@ -41,7 +41,7 @@ export const investors=[
   },
   {
     name:'Aggressive Investor',
-    description:'Danger is your middlename',
+    description:'Danger is your middlename.',
     trait:'Tolerate substantial negative price movements (Can afford to lose a lot of money)',
     risk:'High',
     target:'Substantial capital gain',
