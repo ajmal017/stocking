@@ -17,7 +17,7 @@
       </div>
     </div>
   </nav>
-  <div class="container pt-5 px-4">
+  <div class="container pt-5 px-4 text-white">
     <router-view/>
   </div>
 </template>
