@@ -2,13 +2,13 @@
 <h1>Brokers</h1>
 <div class="row row-cols-auto g-3">
   <div class="col" v-for="(broker, index) in brokers" :key="index" >
-    <div class="card" style="width: 20rem;" >
-      <a :href="broker.link">
+    <div class="card" style="max-width: 20rem;" >
+      <a :href="broker.link" target="_blank">
         <img :src="getImgUrl(broker.img.src)" class="card-img-top p-3" v-bind:alt="broker.img.alt">
       </a>
       <div class="card-body">
         <h5 class="card-title">{{broker.name}}</h5>
-        <p class="card-text"><a :href="broker.link" role="button">Go to Site</a>
+        <p class="card-text"><a :href="broker.link" target="_blank" role="button">Go to Site</a>
       </p>
       </div>
       <ul class="list-group list-group-flush">
@@ -34,10 +34,10 @@
           </ul>
         </li>
         <li class="list-group-item" v-if="broker.googlePlay||broker.appStore">
-          <a :href="broker.googlePlay" v-if="broker.googlePlay">
+          <a :href="broker.googlePlay" v-if="broker.googlePlay" target="_blank">
             <img src="../assets/google-play-badge.png" class="google-play"/>
           </a>
-          <a :href="broker.appStore" v-if="broker.appStore">
+          <a :href="broker.appStore" v-if="broker.appStore" target="_blank">
             <img src="../assets/app-store-badge.svg" class="apple-store"/>
           </a>
         </li>

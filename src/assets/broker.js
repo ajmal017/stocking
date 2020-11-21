@@ -5,7 +5,7 @@ export const brokers=[
       src:"cgscimb_logo.png",
       alt:"cgs_cimb_logo"
     },
-    link:"https://www.cgs-cimb.com/en/home",
+    link:"https://www.cgs-cimb.com.sg/en/openanaccount",
     googlePlay:"https://play.google.com/store/apps/details?id=com.n2nconnect.iTradeCIMB.stock&hl=en&gl=US",
     appStore:"https://apps.apple.com/my/app/cgs-cimb-itrade-my/id520430673",
     onlineBrokerFees:[
@@ -47,7 +47,7 @@ export const brokers=[
       src:"affin_hwang_capital_logo.png",
       alt:"affin_hwang_capital_logo"
     },
-    link:"https://einvest.affinhwang.com/",
+    link:"https://einvest.affinhwang.com/register",
     googlePlay:"https://play.google.com/store/apps/details?id=com.n2nconnect.eInvest.stock&hl=en_US&gl=US",
     appStore:"https://apps.apple.com/my/app/affin-hwang-capital-einvest/id514187287",
     onlineBrokerFees:[
@@ -68,7 +68,7 @@ export const brokers=[
       src:"rhb_logo.jpg",
       alt:"rhb_logo"
     },
-    link:"https://www.rhbtradesmart.com/",
+    link:"https://www.rhbtradesmart.com/prt/signup.xhtml",
     googlePlay:"https://play.google.com/store/apps/details?id=gts.rhbosk.sifb.com.main&hl=en&gl=US",
     appStore:"https://apps.apple.com/my/app/rhb-tradesmart/id965151147",
     onlineBrokerFees:[
