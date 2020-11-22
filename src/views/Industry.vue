@@ -31,7 +31,7 @@
       Click Here to View the Comparison of REIT
     </router-link>
     <router-link class="btn btn-danger open" :to="{name:'Broker'}">
-      Open a trading account to start investing
+      Open a Trading Account to Start Investing
     </router-link>
   </div>
 </template>

@@ -43,7 +43,11 @@
       </dl>
     </div>
   </div>
-
+  <div class="d-grid gap-2 py-3 animate__animated animate__fadeInUpBig">
+    <router-link class="btn btn-success " :to="{name:'Survey'}">
+      Click Here to Do Another Survey
+    </router-link>
+  </div>
 </template>
 
 <script>
