@@ -30,6 +30,9 @@
     <router-link class="btn btn-success " :to="{name:'Stock'}">
       Click Here to View the Comparison of REIT
     </router-link>
+    <router-link class="btn btn-danger open" :to="{name:'Broker'}">
+      Open a trading account to start investing
+    </router-link>
   </div>
 </template>
 
@@ -47,5 +50,11 @@ export default {
 <style lang="scss" scoped>
 img {
   max-height: 120px;
+}
+
+.open {
+  background-color: orangered;
+  color: white;
+  border: orangered;
 }
 </style>
