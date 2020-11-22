@@ -1,6 +1,10 @@
 <template>
-<h1 class="mb-4 text-center">Brokers</h1>
-<div class="row row-cols-auto g-3 text-dark">
+<div class="row">
+  <h4 class="col-10 text-center">Brokers</h4>
+
+  <button class="col-2 text-white back" @click="goBack">Back</button>
+  </div>
+<div class="row row-cols-auto g-3 text-dark mt-3">
   <div class="col-sm-12 col-md-6" style="width: 100%" v-for="(broker, index) in brokers" :key="index" >
     <div class="card">
       <a :href="broker.link" target="_blank">
@@ -61,6 +65,14 @@ export default {
     }
   },
   methods:{
+    goBack() {
+      this.back = true;
+      setTimeout(() => {
+        this.$router.go(-1);
+        this.back = false;
+        }, 500);
+      
+    },
     getImgUrl(pic) {
       return require('../assets/brokers/'+pic)
     }
@@ -68,7 +80,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.back {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  outline: none;
+}
+
 img {
   max-height: 100px;
 }
